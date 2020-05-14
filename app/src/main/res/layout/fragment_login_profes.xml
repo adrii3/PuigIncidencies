@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,99 +8,132 @@
     android:background="@drawable/fondopaestos">
 
     <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Puig Incidències"
         android:textAlignment="center"
-        android:textSize="40dp"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
+        android:textAllCaps="true"
         android:textColor="@android:color/black"
-        android:layout_marginTop="40dp"
+        android:textSize="40dp"
         android:textStyle="bold"
-        android:textAllCaps="true"/>
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.13"
+        tools:layout_editor_absoluteX="0dp" />
+
     <TextView
-    android:text="PROFESSORS"
-    android:textAlignment="center"
-    android:textSize="35dp"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:textColor="@android:color/holo_red_light"
-    android:layout_marginTop="80dp"
-    android:textStyle="bold"
-    android:textAllCaps="true"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Professors"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
-    <LinearLayout android:layout_height="550dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="350dp"
+        android:layout_height="550dp"
+        android:layout_marginBottom="80dp"
         android:background="@drawable/boton_redondo"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="30dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <TextView android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:text="Usuario: "
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="25dp"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"/>
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/point"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
 
-        <View android:layout_height="15dp"
-            android:layout_width="match_parent" />
-
-        <EditText android:layout_height="50dp"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:id="@+id/edit_text_usuario"/>
+            android:text="Correo electrónico: "
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="22dp"
+            android:textStyle="normal" />
 
-        <View android:layout_height="15dp"
-            android:layout_width="match_parent" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
 
-        <TextView android:layout_height="40dp"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/edit_text_usuario_profes"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
             android:text="Contraseña: "
-            android:layout_marginLeft="20dp"
-            android:textSize="25dp"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"/>
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="22dp"
+            android:textStyle="normal" />
 
-        <View android:layout_height="15dp"
-            android:layout_width="match_parent" />
-
-        <EditText android:layout_height="50dp"
+        <View
             android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/edit_text_contraseña"/>
+            android:layout_height="15dp" />
 
-        <View android:layout_height="30dp"
-            android:layout_width="match_parent" />
-
-        <Button android:layout_height="50dp"
+        <EditText
+            android:id="@+id/edit_text_contraseña_profes"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <Button
+            android:id="@+id/boton_login_iniciar_sesion_profes"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:background="@drawable/boton_redondo"
             android:text="Iniciar sesión"
-            android:textColor="@android:color/black"
-            android:id="@+id/boton_login_iniciar_sesion"/>
+            android:textColor="@android:color/black" />
 
-        <View android:layout_height="50dp"
-            android:layout_width="match_parent" />
-
-        <TextView android:layout_height="wrap_content"
+        <View
             android:layout_width="match_parent"
-            android:text="Hacer logg in con google Account "
+            android:layout_height="40dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicia sesión con google:"
             android:textAlignment="center"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black" />
+
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="40dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="145dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/google"></androidx.appcompat.widget.AppCompatImageView>
-
-
+            android:id="@+id/boton_iniciar_sesion_google"
+            android:layout_width="56dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/google"
+            android:layout_gravity="center"/>
 
     </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

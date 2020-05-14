@@ -33,15 +33,24 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
 
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/point"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"/>
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="70dp"
-            android:text="Usuario: "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Correo electrónico: "
             android:textColor="@android:color/black"
-            android:textSize="25dp"
-            android:textStyle="normal" />
+            android:textSize="22dp"
+            android:textAlignment="center"
+            android:layout_marginLeft="20dp"
+            android:textStyle="italic" />
 
         <View
             android:layout_width="match_parent"
@@ -59,12 +68,13 @@
             android:layout_height="15dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="Contraseña: "
+            android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textStyle="normal" />
 
         <View
@@ -80,7 +90,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="10dp" />
 
         <Button
             android:id="@+id/boton_login_iniciar_sesion"
@@ -94,7 +104,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="20dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -112,6 +122,13 @@
             android:textAlignment="center"
             android:textColor="@android:color/holo_blue_light"
             android:textStyle="italic" />
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/point"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"/>
 
     </LinearLayout>
 
