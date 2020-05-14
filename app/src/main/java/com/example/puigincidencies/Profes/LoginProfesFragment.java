@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -32,6 +33,7 @@ public class LoginProfesFragment extends Fragment {
     private Button btnIniciarSesionProfe;
     private ImageView imagenGoogle;
     FirebaseAuth firebaseAuthProfe;
+    NavController navController;
 
 
     public LoginProfesFragment() {
@@ -59,24 +61,7 @@ public class LoginProfesFragment extends Fragment {
             //Inicio de  sesión de profes
             @Override
             public void onClick(View v) {
-                String email = editEmailProfe.getText().toString().trim();
-                String contraseña = editContraseñaProfe.getText().toString().trim();
-
-                if(!email.isEmpty() && !contraseña.isEmpty()){
-                    firebaseAuthProfe.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-                                Navigation.findNavController(view).navigate(R.id.inicioProfesFragment);
-                            }else{
-                                Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-                }else{
-                    Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
-                    return;
-                }
+                iniciarSesionProfes();
             }
         });
 
@@ -88,5 +73,26 @@ public class LoginProfesFragment extends Fragment {
 
             }
         });
+    }
+
+    private void iniciarSesionProfes(){
+        String email = editEmailProfe.getText().toString();
+        String contraseña = editContraseñaProfe.getText().toString();
+
+        if(!email.isEmpty() && !contraseña.isEmpty()){
+            firebaseAuthProfe.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        navController.navigate(R.id.inicioProfesFragment);
+                    }else{
+                        Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }else{
+            Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
+            return;
+        }
     }
 }
