@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -32,7 +33,7 @@ public class LoginProfesFragment extends Fragment {
     private EditText editEmailProfe, editContraseñaProfe;
     private Button btnIniciarSesionProfe;
     private ImageView imagenGoogle;
-    FirebaseAuth firebaseAuthProfe;
+    FirebaseAuth firebaseAuthProfe = FirebaseAuth.getInstance();
     NavController navController;
 
 
@@ -52,7 +53,7 @@ public class LoginProfesFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        navController = Navigation.findNavController(view);
         editEmailProfe = view.findViewById(R.id.edit_text_usuario_profes);
         editContraseñaProfe = view.findViewById(R.id.edit_text_contraseña_profes);
 
@@ -84,7 +85,7 @@ public class LoginProfesFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        navController.navigate(R.id.inicioProfesFragment);
+                        actualizarProfeUI(firebaseAuthProfe.getCurrentUser());
                     }else{
                         Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
                     }
@@ -93,6 +94,12 @@ public class LoginProfesFragment extends Fragment {
         }else{
             Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
             return;
+        }
+    }
+
+    private void actualizarProfeUI(FirebaseUser currentUser){
+        if(currentUser != null) {
+            navController.navigate(R.id.inicioProfesFragment);
         }
     }
 }

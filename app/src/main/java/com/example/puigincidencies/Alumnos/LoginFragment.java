@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class LoginFragment extends Fragment {
     private TextView textClick;
 
     NavController navController;
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     public LoginFragment() {
 
@@ -53,6 +52,8 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        navController = Navigation.findNavController(view);
 
         editEmail = view.findViewById(R.id.edit_text_usuario);
         editContraseña = view.findViewById(R.id.edit_text_contraseña);
@@ -87,7 +88,7 @@ public class LoginFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        navController.navigate(R.id.inicioFragment);
+                        actualizarUI(firebaseAuth.getCurrentUser());
                     }else{
                         Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
                     }
@@ -95,6 +96,12 @@ public class LoginFragment extends Fragment {
             });
         }else{
             Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
+        }
+    }
+
+    private void actualizarUI(FirebaseUser currentUser){
+        if(currentUser != null){
+            navController.navigate(R.id.inicioFragment);
         }
     }
 }

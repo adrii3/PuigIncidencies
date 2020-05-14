@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/inicioProfesFragment"
-        android:name="com.example.puigincidencies.InicioProfesFragment"
+        android:name="com.example.puigincidencies.Profes.InicioProfesFragment"
         android:label="fragment_inicio_profes"
         tools:layout="@layout/fragment_inicio_profes" />
 </navigation>
