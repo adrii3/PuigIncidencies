@@ -3,12 +3,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginProfesFragment">
+    tools:context=".LoginFragment"
+    android:background="@drawable/fondopaestos">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:text="Puig Incidències"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:textColor="@android:color/black"
+        android:layout_marginTop="40dp"
+        android:textStyle="bold"
+        android:textAllCaps="true"/>
+    <TextView
+    android:text="PROFESSORS"
+    android:textAlignment="center"
+    android:textSize="35dp"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:textColor="@android:color/holo_red_light"
+    android:layout_marginTop="80dp"
+    android:textStyle="bold"
+    android:textAllCaps="true"/>
 
+    <LinearLayout android:layout_height="550dp"
+        android:layout_width="350dp"
+        android:background="@drawable/boton_redondo"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="vertical">
+
+        <TextView android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text="Usuario: "
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="25dp"
+            android:textStyle="normal"
+            android:textColor="@android:color/black"/>
+
+        <View android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+        <EditText android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_text_usuario"/>
+
+        <View android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+        <TextView android:layout_height="40dp"
+            android:layout_width="wrap_content"
+            android:text="Contraseña: "
+            android:layout_marginLeft="20dp"
+            android:textSize="25dp"
+            android:textStyle="normal"
+            android:textColor="@android:color/black"/>
+
+        <View android:layout_height="15dp"
+            android:layout_width="match_parent" />
+
+        <EditText android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_text_contraseña"/>
+
+        <View android:layout_height="30dp"
+            android:layout_width="match_parent" />
+
+        <Button android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/boton_redondo"
+            android:text="Iniciar sesión"
+            android:textColor="@android:color/black"
+            android:id="@+id/boton_login_iniciar_sesion"/>
+
+        <View android:layout_height="50dp"
+            android:layout_width="match_parent" />
+
+        <TextView android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Hacer logg in con google Account "
+            android:textAlignment="center"
+            android:textColor="@android:color/black"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="145dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/google"></androidx.appcompat.widget.AppCompatImageView>
+
+
+
+    </LinearLayout>
 </FrameLayout>
