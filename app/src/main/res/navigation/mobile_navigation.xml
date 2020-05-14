@@ -9,4 +9,9 @@
         android:name="com.example.puigincidencies.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/loginProfesFragment"
+        android:name="com.example.puigincidencies.LoginProfesFragment"
+        android:label="fragment_login_profes"
+        tools:layout="@layout/fragment_login_profes" />
 </navigation>
