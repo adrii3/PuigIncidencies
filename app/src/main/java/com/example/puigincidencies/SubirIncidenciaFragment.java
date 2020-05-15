@@ -1,4 +1,4 @@
-package com.example.puigincidencies.Profes;
+package com.example.puigincidencies;
 
 
 import android.os.Bundle;
@@ -9,16 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.puigincidencies.R;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InicioProfesFragment extends Fragment {
+public class SubirIncidenciaFragment extends Fragment {
 
 
-    public InicioProfesFragment() {
+    public SubirIncidenciaFragment() {
         // Required empty public constructor
     }
 
@@ -27,7 +25,7 @@ public class InicioProfesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inicio_profes, container, false);
+        return inflater.inflate(R.layout.fragment_subir_incidencia, container, false);
     }
 
 }

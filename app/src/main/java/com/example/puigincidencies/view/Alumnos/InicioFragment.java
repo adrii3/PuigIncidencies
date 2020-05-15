@@ -3,13 +3,17 @@ package com.example.puigincidencies.view.Alumnos;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.puigincidencies.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 /**
@@ -17,6 +21,7 @@ import com.example.puigincidencies.R;
  */
 public class InicioFragment extends Fragment {
 
+    FloatingActionButton floatingSubirIncidencia;
 
     public InicioFragment() {
         // Required empty public constructor
@@ -30,4 +35,17 @@ public class InicioFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_inicio, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        floatingSubirIncidencia = view.findViewById(R.id.floating_subir_incidencia);
+        floatingSubirIncidencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.subirIncidenciaFragment);
+            }
+        });
+
+    }
 }
