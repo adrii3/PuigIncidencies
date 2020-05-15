@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="valores_spinner_clase">
+        <item>Elige una clase: </item>
+        <item>1ºASIX</item>
+        <item>2ºASIX </item>
+        <item>1ºDAM</item>
+        <item>2ºDAM </item>
+    </string-array>
+</resources>
