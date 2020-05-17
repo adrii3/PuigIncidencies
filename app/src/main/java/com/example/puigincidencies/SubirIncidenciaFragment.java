@@ -18,7 +18,6 @@ import android.widget.Spinner;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -90,7 +89,6 @@ public class SubirIncidenciaFragment extends Fragment {
                 infoIncidencia.put("nombre clase", spinnerClase );
                 infoIncidencia.put("tipoIncidencia", spinnerIncidencias);
                 infoIncidencia.put("descripcion",textoDescripcion);
-
                 dbReferencia.child("Incidencia").push().setValue(infoIncidencia);
             }
         });
