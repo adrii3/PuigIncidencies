@@ -93,6 +93,5 @@ public class SubirIncidenciaFragment extends Fragment {
             }
         });
         //FALTA AÑADIR LA CAMARA PARA SUBIR A LA BASE DE DATOS TODA LA INFO DE LA INCIDENCIA, AL SUBIRLO A LA BASE DE DATOS PETA
-
     }
 }
