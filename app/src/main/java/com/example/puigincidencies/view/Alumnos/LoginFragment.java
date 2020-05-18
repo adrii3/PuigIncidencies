@@ -23,6 +23,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -36,7 +41,7 @@ public class LoginFragment extends Fragment {
     private TextView textClick;
 
     NavController navController;
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mDatabase;
 
     public LoginFragment() {
 
@@ -57,6 +62,8 @@ public class LoginFragment extends Fragment {
 
         editEmail = view.findViewById(R.id.edit_text_usuario);
         editContraseña = view.findViewById(R.id.edit_text_contraseña);
+
+
 
 
         btnIniciarSesion =view.findViewById(R.id.boton_login_iniciar_sesion);
@@ -80,28 +87,31 @@ public class LoginFragment extends Fragment {
     }
 
     private void iniciarSesion(){
-        String email = editEmail.getText().toString();
-        String contraseña = editContraseña.getText().toString();
+        final String email = editEmail.getText().toString();
+        final String contraseña = editContraseña.getText().toString();
 
-        if(!email.isEmpty() && !contraseña.isEmpty()){
-            firebaseAuth.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
-                        actualizarUI(firebaseAuth.getCurrentUser());
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Usuarios").child("Usuario").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String nombreDatabase = dataSnapshot.child("username").getValue().toString();
+                String  contraseñaDatabase = dataSnapshot.child("contraseña").getValue().toString();
+
+                if(dataSnapshot.exists()){
+                    if(email.equals(nombreDatabase )&& (contraseña.equals(contraseñaDatabase))){
+                        navController.navigate(R.id.inicioFragment);
                     }else{
-                        Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Usuario o contraseña incorrectos",Toast.LENGTH_LONG);
                     }
+                }else{
+                    Toast.makeText(getContext(),"BBDD incorrecto",Toast.LENGTH_LONG);
                 }
-            });
-        }else{
-            Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
-        }
-    }
+            }
 
-    private void actualizarUI(FirebaseUser currentUser){
-        if(currentUser != null){
-            navController.navigate(R.id.inicioFragment);
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
