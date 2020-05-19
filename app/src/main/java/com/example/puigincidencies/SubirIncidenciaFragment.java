@@ -41,7 +41,7 @@ public class SubirIncidenciaFragment extends Fragment {
     private Spinner spinnerClase;
     private EditText descripcion;
     private Button subirIncidencia;
-    String seleccionIncidencia, seleccionClase, textoDescripcion;
+    String seleccionClase, textoDescripcion;
 
    DatabaseReference dbReferencia;
 
@@ -76,20 +76,6 @@ public class SubirIncidenciaFragment extends Fragment {
         });
 
 
-        ArrayAdapter<CharSequence> adapterSpinnerIncidencias = ArrayAdapter.createFromResource(getContext(), R.array.valores_array, android.R.layout.simple_spinner_item);
-        spinnerIncidencias = view.findViewById(R.id.spinner_incidencia);
-        spinnerIncidencias.setAdapter(adapterSpinnerIncidencias);
-        spinnerIncidencias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                seleccionIncidencia = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         descripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
         textoDescripcion = descripcion.getText().toString();
 
@@ -100,7 +86,6 @@ public class SubirIncidenciaFragment extends Fragment {
             public void onClick(View v) {
                 Map<String, Object> infoIncidencia = new HashMap<>();
                 infoIncidencia.put("nombre clase", spinnerClase );
-                infoIncidencia.put("tipoIncidencia", spinnerIncidencias);
                 infoIncidencia.put("descripcion",textoDescripcion);
                 dbReferencia.child("Incidencia").push().setValue(infoIncidencia);
             }
