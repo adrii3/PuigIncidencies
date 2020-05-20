@@ -49,13 +49,6 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="20dp" />
 
-        <Spinner
-            android:id="@+id/spinner_incidencia"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginRight="20dp" />
 
         <ImageButton
             android:id="@+id/sacarfoto"
@@ -86,7 +79,6 @@
             android:layout_marginRight="20dp"
             android:text="Subir incidencia"
             android:background="@drawable/boton_redondo"/>
-
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

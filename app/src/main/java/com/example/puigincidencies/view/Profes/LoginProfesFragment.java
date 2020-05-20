@@ -23,6 +23,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -33,8 +35,9 @@ public class LoginProfesFragment extends Fragment {
     private EditText editEmailProfe, editContraseñaProfe;
     private Button btnIniciarSesionProfe;
     private ImageView imagenGoogle;
-    FirebaseAuth firebaseAuthProfe = FirebaseAuth.getInstance();
-    NavController navController;
+    private FirebaseAuth firebaseAuthProfe = FirebaseAuth.getInstance();
+    private NavController navController;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
 
     public LoginProfesFragment() {
@@ -81,6 +84,7 @@ public class LoginProfesFragment extends Fragment {
         String contraseña = editContraseñaProfe.getText().toString();
 
         if(!email.isEmpty() && !contraseña.isEmpty()){
+
             firebaseAuthProfe.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
