@@ -83,27 +83,34 @@ public class LoginProfesFragment extends Fragment {
         String email = editEmailProfe.getText().toString();
         String contraseña = editContraseñaProfe.getText().toString();
 
+
         if(!email.isEmpty() && !contraseña.isEmpty()){
+
 
             firebaseAuthProfe.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    final String uid = firebaseAuthProfe.getCurrentUser().getUid();
                     if(task.isSuccessful()){
-                        actualizarProfeUI(firebaseAuthProfe.getCurrentUser());
+                        if(uid.equals(databaseReference.child(firebaseAuthProfe.getCurrentUser().getUid()))){
+                            actualizarProfeUI(firebaseAuthProfe.getCurrentUser());
+                        }else {
+                            Toast.makeText(getContext(),"Inicia sesión en alumnos", LENGTH_SHORT).show();
+                        }
                     }else{
-                        Toast.makeText(getContext(),"Inicio de sesión incorrecto", LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Usuario o contraseña incorrecto", LENGTH_SHORT).show();
                     }
                 }
             });
         }else{
-            Toast.makeText(getContext(),"Relllene los campos requeridos", Toast.LENGTH_LONG);
+            Toast.makeText(getContext(),"Rellene los campos requeridos", Toast.LENGTH_LONG);
             return;
         }
     }
 
     private void actualizarProfeUI(FirebaseUser currentUser){
         if(currentUser != null) {
-            navController.navigate(R.id.inicioProfesFragment);
+            navController.navigate(R.id.inicioFragment);
         }
     }
 }

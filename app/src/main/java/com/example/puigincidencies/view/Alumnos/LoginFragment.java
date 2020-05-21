@@ -40,8 +40,9 @@ public class LoginFragment extends Fragment {
     private Button btnIniciarSesion;
     private TextView textClick;
 
-    NavController navController;
-    private DatabaseReference mDatabase;
+    private NavController navController;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
     public LoginFragment() {
 
@@ -87,32 +88,38 @@ public class LoginFragment extends Fragment {
     }
 
     private void iniciarSesion(){
-        final String email = editEmail.getText().toString();
-        final String contraseña = editContraseña.getText().toString();
+        String email = editEmail.getText().toString();
+        String contraseña = editContraseña.getText().toString();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Usuarios").child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String nombreDatabase = dataSnapshot.child("username").getValue().toString();
-                String  contraseñaDatabase = dataSnapshot.child("contraseña").getValue().toString();
 
-                if(dataSnapshot.exists()){
-                    if(email.equals(nombreDatabase )&& (contraseña.equals(contraseñaDatabase))){
-                        navController.navigate(R.id.inicioFragment);
+        if(!email.isEmpty() && !contraseña.isEmpty()){
+
+
+            firebaseAuth.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    final String uid = firebaseAuth.getCurrentUser().getUid();
+                    if(task.isSuccessful()) {
+                        if (uid.equals(mDatabase.child(firebaseAuth.getCurrentUser().getUid()))) {
+                            Toast.makeText(getContext(), "Inicia sesión en profesores", LENGTH_SHORT).show();
+                        } else {
+                            actualizarProfeUI(firebaseAuth.getCurrentUser());
+                        }
                     }else{
-                        Toast.makeText(getContext(),"Usuario o contraseña incorrectos",Toast.LENGTH_LONG);
+                        Toast.makeText(getContext(), "Usuario o contraseña incorrectos", LENGTH_SHORT).show();
                     }
-                }else{
-                    Toast.makeText(getContext(),"BBDD incorrecto",Toast.LENGTH_LONG);
                 }
-            }
+            });
+        }else{
+            Toast.makeText(getContext(),"Rellene los campos requeridos", Toast.LENGTH_LONG);
+            return;
+        }
+    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    private void actualizarProfeUI(FirebaseUser currentUser){
+        if(currentUser != null) {
+            navController.navigate(R.id.inicioFragment);
+        }
     }
 }
 
