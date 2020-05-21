@@ -93,20 +93,18 @@ public class LoginFragment extends Fragment {
 
 
         if(!email.isEmpty() && !contraseña.isEmpty()){
-
-
             firebaseAuth.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    final String uid = firebaseAuth.getCurrentUser().getUid();
-                    if(task.isSuccessful()) {
-                        if (uid.equals(mDatabase.child(firebaseAuth.getCurrentUser().getUid()))) {
-                            Toast.makeText(getContext(), "Inicia sesión en profesores", LENGTH_SHORT).show();
-                        } else {
-                            actualizarProfeUI(firebaseAuth.getCurrentUser());
+                    String uid = firebaseAuth.getCurrentUser().getUid();
+                    if(task.isSuccessful()){
+                        if(!uid.equals(mDatabase.child(firebaseAuth.getCurrentUser().getUid()))){
+                            actualizarUI(firebaseAuth.getCurrentUser());
+                        }else {
+                            Toast.makeText(getContext(),"Inicia sesión como profe", LENGTH_SHORT).show();
                         }
                     }else{
-                        Toast.makeText(getContext(), "Usuario o contraseña incorrectos", LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Usuario o contraseña incorrecto", LENGTH_SHORT).show();
                     }
                 }
             });
@@ -116,7 +114,7 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    private void actualizarProfeUI(FirebaseUser currentUser){
+    private void actualizarUI(FirebaseUser currentUser){
         if(currentUser != null) {
             navController.navigate(R.id.inicioFragment);
         }
