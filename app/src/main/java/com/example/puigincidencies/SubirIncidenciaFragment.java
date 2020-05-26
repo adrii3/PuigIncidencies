@@ -22,14 +22,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import com.example.puigincidencies.model.Incidencia;
-import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
@@ -38,15 +37,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
 public class SubirIncidenciaFragment extends Fragment {
     private ImageView imageView;
+    private Spinner spinnerIncidencias;
     private Spinner spinnerClase;
     private EditText descripcion;
     private Button subirIncidencia;
+    private StorageReference mStorage;
     String seleccionClase, textoDescripcion;
 
    DatabaseReference dbReferencia;
@@ -85,6 +85,7 @@ public class SubirIncidenciaFragment extends Fragment {
         descripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
         textoDescripcion = descripcion.getText().toString();
 
+        dbReferencia = FirebaseDatabase.getInstance().getReference();
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,8 +93,6 @@ public class SubirIncidenciaFragment extends Fragment {
 
             }
         });
-
-
 
         //FALTA AÑADIR LA CAMARA PARA SUBIR A LA BASE DE DATOS TODA LA INFO DE LA INCIDENCIA, AL SUBIRLO A LA BASE DE DATOS PETA
         Button sacarfoto;
@@ -105,13 +104,6 @@ public class SubirIncidenciaFragment extends Fragment {
             }
         });
     }
-
-
-
-
-
-
-
     String currentPhotoPath;
 
     private File createImageFile() throws IOException {
@@ -127,6 +119,7 @@ public class SubirIncidenciaFragment extends Fragment {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+
         return image;
     }
 
@@ -144,7 +137,7 @@ public class SubirIncidenciaFragment extends Fragment {
                 // Error occurred while creating the File
 
             }
-            // Continue only if the File was successfully created
+              // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(requireActivity(),
                         "com.example.android.fileprovider",
@@ -163,6 +156,21 @@ public class SubirIncidenciaFragment extends Fragment {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             imageView.setImageBitmap(imageBitmap);
+            mStorage = FirebaseStorage.getInstance().getReference();
+            Uri uri = data.getData();
+
+            StorageReference filePath= mStorage.child("fotos").child(uri.getLastPathSegment());
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(SubirIncidenciaFragment.this,"foto subida correctamente",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+
+
+
         }
     }
+
 }

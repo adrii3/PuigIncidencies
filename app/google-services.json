@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "38965497575",
+    "firebase_url": "https://puig-incidencies.firebaseio.com",
+    "project_id": "puig-incidencies",
+    "storage_bucket": "puig-incidencies.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38965497575:android:d937497e49f5388aca5c42",
+        "android_client_info": {
+          "package_name": "com.example.puigincidencies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38965497575-541jd9i60a0mfo3lp9v1corrgluc4a20.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.puigincidencies",
+            "certificate_hash": "aa7678ac1b0be8be84cad827bd16a152c5ac9847"
+          }
+        },
+        {
+          "client_id": "38965497575-kirv9mkt95c7dia1kb2tl2v80qmkp5b2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC988gL1w0vX2xI7nZkwS_3aul2ya9qcDM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38965497575-kirv9mkt95c7dia1kb2tl2v80qmkp5b2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
