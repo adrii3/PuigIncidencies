@@ -37,7 +37,7 @@ public class LoginProfesFragment extends Fragment {
     private ImageView imagenGoogle;
     private FirebaseAuth firebaseAuthProfe = FirebaseAuth.getInstance();
     private NavController navController;
-    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
     public LoginProfesFragment() {

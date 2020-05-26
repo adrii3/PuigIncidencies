@@ -11,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.puigincidencies.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class InicioFragment extends Fragment {
 
-    FloatingActionButton floatingSubirIncidencia;
+    Button floatingSubirIncidencia;
 
     public InicioFragment() {
         // Required empty public constructor
@@ -46,6 +47,5 @@ public class InicioFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.subirIncidenciaFragment);
             }
         });
-
     }
 }

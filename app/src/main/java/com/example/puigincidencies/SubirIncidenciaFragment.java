@@ -23,8 +23,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.puigincidencies.model.Incidencia;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,12 +38,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
 public class SubirIncidenciaFragment extends Fragment {
     private ImageView imageView;
-    private Spinner spinnerIncidencias;
     private Spinner spinnerClase;
     private EditText descripcion;
     private Button subirIncidencia;
@@ -79,17 +85,15 @@ public class SubirIncidenciaFragment extends Fragment {
         descripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
         textoDescripcion = descripcion.getText().toString();
 
-        dbReferencia = FirebaseDatabase.getInstance().getReference();
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Map<String, Object> infoIncidencia = new HashMap<>();
-                infoIncidencia.put("nombre clase", spinnerClase );
-                infoIncidencia.put("descripcion",textoDescripcion);
-                dbReferencia.child("Incidencia").push().setValue(infoIncidencia);
+
             }
         });
+
+
 
         //FALTA AÑADIR LA CAMARA PARA SUBIR A LA BASE DE DATOS TODA LA INFO DE LA INCIDENCIA, AL SUBIRLO A LA BASE DE DATOS PETA
         Button sacarfoto;
@@ -101,6 +105,13 @@ public class SubirIncidenciaFragment extends Fragment {
             }
         });
     }
+
+
+
+
+
+
+
     String currentPhotoPath;
 
     private File createImageFile() throws IOException {
