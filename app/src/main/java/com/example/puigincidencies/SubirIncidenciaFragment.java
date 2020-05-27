@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -95,7 +96,7 @@ public class SubirIncidenciaFragment extends Fragment {
         });
 
         //FALTA AÑADIR LA CAMARA PARA SUBIR A LA BASE DE DATOS TODA LA INFO DE LA INCIDENCIA, AL SUBIRLO A LA BASE DE DATOS PETA
-        Button sacarfoto;
+        ImageButton sacarfoto;
         sacarfoto=view.findViewById(R.id.sacarfoto);
         sacarfoto.setOnClickListener(new View.OnClickListener() {
             @Override
