@@ -163,7 +163,7 @@ public class SubirIncidenciaFragment extends Fragment {
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(SubirIncidenciaFragment.this,"foto subida correctamente",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity() ,"foto subida correctamente",Toast.LENGTH_SHORT).show();
                 }
             });
 
