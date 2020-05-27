@@ -24,9 +24,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.puigincidencies.model.Incidencia;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -46,7 +44,8 @@ public class SubirIncidenciaFragment extends AppFragment {
     private EditText editTextDescripcion;
     private Button subirIncidencia;
     private StorageReference mStorage;
-    String seleccionClase, textoDescripcion;
+    private String lugar, textoDescripcion;
+    Map<String, Object> incidencia = new HashMap<>();
 
 
 
@@ -71,7 +70,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         spinnerClase.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                seleccionClase = parent.getItemAtPosition(position).toString();
+                lugar = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -82,7 +81,6 @@ public class SubirIncidenciaFragment extends AppFragment {
 
         editTextDescripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
         textoDescripcion = editTextDescripcion.getText().toString();
-
 
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
@@ -105,12 +103,19 @@ public class SubirIncidenciaFragment extends AppFragment {
 
     private void subirDatos(){
 
-        Map<String, Object> incidencia = new HashMap<>();
-        incidencia.put("Lugar",seleccionClase);
-        incidencia.put("Descripcion",textoDescripcion);
-        incidencia.put("Foto",currentPhotoPath);
-        db.collection("Users").document().set(incidencia);
+        if(!lugar.isEmpty() && !textoDescripcion.isEmpty()){
+            Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
+        }else{
+            incidencia.put("Id",user.getUid());
+            incidencia.put("Lugar", lugar);
+            incidencia.put("Descripcion",textoDescripcion);
+            incidencia.put("aceptarIncidencia","False");
+            incidencia.put("Foto",currentPhotoPath);
+            db.collection("Incidencia").document().set(incidencia);
+            navController.popBackStack();
+            Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 
+        }
     }
 
 
