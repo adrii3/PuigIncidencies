@@ -35,6 +35,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -86,13 +88,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db.collection("Users").add(new Incidencia(user.getUid(), seleccionClase, textoDescripcion ,user.getPhotoUrl().toString()))
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                navController.popBackStack();
-                            }
-                        });
+                subirDatos();
             }
         });
 
@@ -106,6 +102,18 @@ public class SubirIncidenciaFragment extends AppFragment {
             }
         });
     }
+
+    private void subirDatos(){
+
+        Map<String, Object> incidencia = new HashMap<>();
+        incidencia.put("Lugar",seleccionClase);
+        incidencia.put("Descripcion",textoDescripcion);
+        incidencia.put("Foto",currentPhotoPath);
+        db.collection("Users").document().set(incidencia);
+
+    }
+
+
     String currentPhotoPath;
 
     private File createImageFile() throws IOException {
