@@ -23,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  */
 public class InicioFragment extends AppFragment {
 
-    Button floatingSubirIncidencia;
+    FloatingActionButton floatingSubirIncidencia;
 
     public InicioFragment() {
         // Required empty public constructor
