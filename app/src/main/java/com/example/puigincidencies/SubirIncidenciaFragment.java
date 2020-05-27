@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -25,9 +24,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.puigincidencies.model.Incidencia;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,21 +35,17 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
-public class SubirIncidenciaFragment extends Fragment {
+public class SubirIncidenciaFragment extends AppFragment {
     private ImageView imageView;
-    private Spinner spinnerIncidencias;
     private Spinner spinnerClase;
-    private EditText descripcion;
+    private EditText editTextDescripcion;
     private Button subirIncidencia;
     private StorageReference mStorage;
     String seleccionClase, textoDescripcion;
 
-   DatabaseReference dbReferencia;
 
 
     public SubirIncidenciaFragment() {
@@ -83,15 +78,21 @@ public class SubirIncidenciaFragment extends Fragment {
         });
 
 
-        descripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
-        textoDescripcion = descripcion.getText().toString();
+        editTextDescripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
+        textoDescripcion = editTextDescripcion.getText().toString();
 
-        dbReferencia = FirebaseDatabase.getInstance().getReference();
+
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                db.collection("Users").add(new Incidencia(user.getUid(), seleccionClase, textoDescripcion ,user.getPhotoUrl().toString()))
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                navController.popBackStack();
+                            }
+                        });
             }
         });
 

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.puigincidencies.AppFragment;
 import com.example.puigincidencies.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InicioFragment extends Fragment {
+public class InicioFragment extends AppFragment {
 
     Button floatingSubirIncidencia;
 
@@ -44,7 +45,7 @@ public class InicioFragment extends Fragment {
         floatingSubirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.subirIncidenciaFragment);
+                navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
     }
