@@ -48,5 +48,7 @@ public class InicioFragment extends AppFragment {
                 navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
+
+
     }
 }

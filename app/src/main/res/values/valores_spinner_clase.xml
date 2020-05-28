@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="valores_spinner_clase">
-        <item>Elige una clase: </item>
-        <item>1ºASIX</item>
-        <item>2ºASIX </item>
-        <item>1ºDAM</item>
-        <item>2ºDAM </item>
+        <item>Elige el lugar de la incidencia: </item>
+        <item>Patio</item>
+        <item>Aula </item>
+        <item>Vestibulo</item>
+        <item>Pasillo </item>
+        <item>Lavabo </item>
+        <item>Cantina </item>
     </string-array>
 </resources>

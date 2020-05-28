@@ -48,4 +48,9 @@
         android:name="com.example.puigincidencies.SubirIncidenciaFragment"
         android:label="fragment_subir_incidencia"
         tools:layout="@layout/fragment_subir_incidencia" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.puigincidencies.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

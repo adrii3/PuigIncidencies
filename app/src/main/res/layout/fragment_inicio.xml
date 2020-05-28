@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:text="Llista d'incidéncies"
+        android:text="Lista de incidencias"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"

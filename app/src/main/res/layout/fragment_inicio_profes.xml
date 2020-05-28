@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:text="Llista d'incidéncies"
+        android:text="Lista de incidencias"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
@@ -26,20 +26,28 @@
         android:layout_width="121dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="144dp"
         android:background="@drawable/point"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <Spinner
+        android:id="@+id/spinner_inicio_profes"
+        android:layout_width="174dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_inicio"
         android:layout_width="350dp"
         android:layout_height="500dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/_dynamic">
 
     </androidx.recyclerview.widget.RecyclerView>
 
