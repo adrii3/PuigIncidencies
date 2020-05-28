@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.puigincidencies.model.Incidencia;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -107,12 +108,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         if(lugar.isEmpty() && textoDescripcion.isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
-            incidencia.put("idUsuario",user.getUid());
-            incidencia.put("lugar", lugar);
-            incidencia.put("descripcion",textoDescripcion);
-            incidencia.put("aceptarIncidencia",aceptarIncidencia);
-            incidencia.put("foto",currentPhotoPath);
-            db.collection("Incidencia").document().set(incidencia);
+            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, textoDescripcion, aceptarIncidencia, currentPhotoPath));
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 

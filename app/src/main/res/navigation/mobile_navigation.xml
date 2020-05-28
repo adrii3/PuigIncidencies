@@ -6,23 +6,14 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.puigincidencies.view.Alumnos.LoginFragment"
+        android:name="com.example.puigincidencies.view.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_loginProfesFragment"
-            app:destination="@id/loginProfesFragment" />
-        <action
             android:id="@+id/action_loginFragment_to_inicioFragment"
             app:destination="@id/inicioFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginProfesFragment"
-        android:name="com.example.puigincidencies.view.Profes.LoginProfesFragment"
-        android:label="fragment_login_profes"
-        tools:layout="@layout/fragment_login_profes" >
         <action
-            android:id="@+id/action_loginProfesFragment_to_inicioProfesFragment"
+            android:id="@+id/action_loginFragment_to_inicioProfesFragment"
             app:destination="@id/inicioProfesFragment" />
     </fragment>
     <fragment

@@ -22,6 +22,7 @@ public abstract class AppFragment extends Fragment {
     public FirebaseFirestore db;
     public FirebaseUser user;
     public FirebaseStorage storage;
+    public FirebaseAuth auth;
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public abstract class AppFragment extends Fragment {
         db = FirebaseFirestore.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
         storage = FirebaseStorage.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
                 new OnBackPressedCallback(true) {

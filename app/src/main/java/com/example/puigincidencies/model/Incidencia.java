@@ -4,14 +4,16 @@ public class Incidencia {
     public String uid;
     public String lugar;
     public String descripcion;
+    public boolean aceptarIncidencia;
     public String mediaUrl;
 
     public Incidencia(){}
 
-    public Incidencia(String uid, String lugar, String descripcion, String mediaUrl ){
+    public Incidencia(String uid, String lugar, String descripcion, boolean aceptarIncidencia, String mediaUrl) {
         this.uid = uid;
         this.lugar = lugar;
         this.descripcion = descripcion;
+        this.aceptarIncidencia = aceptarIncidencia;
         this.mediaUrl = mediaUrl;
     }
 
