@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.puigincidencies.model.Incidencia;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -44,6 +45,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     private Spinner spinnerClase;
     private EditText editTextDescripcion;
     private Button subirIncidencia;
+    private ImageView fotoincidencia;
     private StorageReference mStorage;
     private String lugar, textoDescripcion;
     private boolean aceptarIncidencia = false;
@@ -166,8 +168,9 @@ public class SubirIncidenciaFragment extends AppFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
          Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            imageView.setImageBitmap(imageBitmap);
+            fotoincidencia = imageView.findViewById(R.id.fotoincidencia);
+            Glide.with(this).load(currentPhotoPath).into(fotoincidencia);
+
             mStorage = FirebaseStorage.getInstance().getReference();
             Uri uri = data.getData();
 
