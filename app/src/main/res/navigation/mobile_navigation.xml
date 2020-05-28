@@ -38,10 +38,19 @@
         android:id="@+id/inicioProfesFragment"
         android:name="com.example.puigincidencies.view.Profes.InicioProfesFragment"
         android:label="fragment_inicio_profes"
-        tools:layout="@layout/fragment_inicio_profes" />
+        tools:layout="@layout/fragment_inicio_profes" >
+        <action
+            android:id="@+id/action_inicioProfesFragment_to_subirIncidenciaFragment"
+            app:destination="@id/subirIncidenciaFragment" />
+    </fragment>
     <fragment
         android:id="@+id/subirIncidenciaFragment"
         android:name="com.example.puigincidencies.SubirIncidenciaFragment"
         android:label="fragment_subir_incidencia"
         tools:layout="@layout/fragment_subir_incidencia" />
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.example.puigincidencies.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

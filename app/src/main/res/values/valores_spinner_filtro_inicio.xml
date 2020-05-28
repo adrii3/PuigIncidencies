@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="valores_spinner_filtro_inicio">
+        <item>Filtro de incidencias: </item>
+        <item>Aceptada</item>
+        <item>No aceptadas </item>
+        <item>No solucionadas</item>
+        <item>Solucionadas </item>
+    </string-array>
+</resources>
