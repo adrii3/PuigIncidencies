@@ -1,8 +1,7 @@
-package com.example.puigincidencies;
+package com.example.puigincidencies.view;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -25,7 +24,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.puigincidencies.AppFragment;
+import com.example.puigincidencies.R;
 import com.example.puigincidencies.model.Incidencia;
+import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -35,8 +37,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -47,7 +47,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     private Button subirIncidencia;
     private ImageView fotoincidencia;
     private StorageReference mStorage;
-    private String lugar, textoDescripcion;
+    private String lugar;
     private boolean aceptarIncidencia = false;
 
 
@@ -88,7 +88,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         subirIncidencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                subirDatos();
+                subirDatosIncidenciaCompleta();
             }
         });
 
@@ -103,12 +103,13 @@ public class SubirIncidenciaFragment extends AppFragment {
         });
     }
 
-    private void subirDatos(){
+    private void subirDatosIncidenciaCompleta(){
 
-        if(lugar.isEmpty() && textoDescripcion.isEmpty()){
+        if(lugar.isEmpty() && editTextDescripcion.getText().toString().isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
             db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, currentPhotoPath));
+            db.collection("MiniaturaIncidencia").add(new IncidenciaRecyclerInicio(lugar,editTextDescripcion.getText().toString(),user.getUid()));
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 

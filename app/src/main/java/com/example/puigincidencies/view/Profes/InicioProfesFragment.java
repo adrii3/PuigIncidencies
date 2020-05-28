@@ -2,26 +2,26 @@ package com.example.puigincidencies.view.Profes;
 
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.puigincidencies.AppFragment;
+import com.example.puigincidencies.IncidenciaAdapter;
 import com.example.puigincidencies.R;
-import com.example.puigincidencies.model.Incidencia;
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 
@@ -33,6 +33,9 @@ public class InicioProfesFragment extends AppFragment {
     FloatingActionButton subirIncidenciaProfes;
     Spinner filtrarIncidencias;
     String filtro;
+    RecyclerView recyclerView;
+    IncidenciaAdapter incidenciaAdapter;
+    FirebaseFirestore firebaseFirestore;
 
     public InicioProfesFragment() {
         // Required empty public constructor
@@ -72,51 +75,28 @@ public class InicioProfesFragment extends AppFragment {
             }
         });
 
-        RecyclerView incidenciasRecyclerView = view.findViewById(R.id.recycler_view_inicio);
-        FirestoreRecyclerOptions<Incidencia> options = new FirestoreRecyclerOptions.Builder<Incidencia>()
-                .setQuery(setQuery(), Incidencia.class)
-                .setLifecycleOwner(this)
-                .build();
 
-        incidenciasRecyclerView.setAdapter(new IncidenciasAdapter(options));
 
+        recyclerView =  view.findViewById(R.id.recycler_view_inicio);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Query query = db.collection("MiniaturaIncidencia");
+        FirestoreRecyclerOptions<IncidenciaRecyclerInicio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<IncidenciaRecyclerInicio>()
+                .setQuery(query, IncidenciaRecyclerInicio.class).build();
+
+        incidenciaAdapter = new IncidenciaAdapter(firestoreRecyclerOptions);
+        incidenciaAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(incidenciaAdapter);
     }
 
-    class IncidenciasAdapter extends FirestoreRecyclerAdapter<Incidencia, IncidenciasAdapter.IncidenciaViewHolder> {
-        IncidenciasAdapter(@NonNull FirestoreRecyclerOptions<Incidencia> options) { super(options); }
-
-
-        @NonNull
-        @Override
-        public IncidenciaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new IncidenciaViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_incidencia, parent, false));
-        }
-
-
-        @Override
-        protected void onBindViewHolder(@NonNull IncidenciaViewHolder holder, int position, @NonNull final Incidencia incidencia) {
-            final String incidenciaKey = getSnapshots().getSnapshot(position).getId();
-
-            holder.textViewLugar.setText(incidencia.lugar);
-            holder.textViewLugar.setText(incidencia.descripcion);
-        }
-
-
-        class IncidenciaViewHolder extends RecyclerView.ViewHolder{
-
-            TextView textViewLugar, textViewDesc;
-
-
-            IncidenciaViewHolder(@NonNull View itemView) {
-                super(itemView);
-
-                textViewLugar = itemView.findViewById(R.id.viewholder_lugar);
-                textViewDesc = itemView.findViewById(R.id.viewholder_descripcion);
-            }
-        }
+    @Override
+    public void onStart() {
+        super.onStart();
+        incidenciaAdapter.startListening();
     }
 
-    Query setQuery(){
-        return db.collection("Incidencia").limit(50);
+    @Override
+    public void onStop() {
+        super.onStop();
+        incidenciaAdapter.stopListening();
     }
 }
