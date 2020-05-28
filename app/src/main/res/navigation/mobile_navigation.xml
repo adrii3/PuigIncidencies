@@ -7,8 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.puigincidencies.view.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_inicioFragment"
             app:destination="@id/inicioFragment" />
@@ -19,8 +18,7 @@
     <fragment
         android:id="@+id/inicioFragment"
         android:name="com.example.puigincidencies.view.Alumnos.InicioFragment"
-        android:label="fragment_inicio"
-        tools:layout="@layout/fragment_inicio" >
+        tools:layout="@layout/fragment_inicio">
         <action
             android:id="@+id/action_inicioFragment_to_subirIncidenciaFragment"
             app:destination="@id/subirIncidenciaFragment" />
@@ -28,8 +26,7 @@
     <fragment
         android:id="@+id/inicioProfesFragment"
         android:name="com.example.puigincidencies.view.Profes.InicioProfesFragment"
-        android:label="fragment_inicio_profes"
-        tools:layout="@layout/fragment_inicio_profes" >
+        tools:layout="@layout/fragment_inicio_profes">
         <action
             android:id="@+id/action_inicioProfesFragment_to_subirIncidenciaFragment"
             app:destination="@id/subirIncidenciaFragment" />
@@ -41,20 +38,24 @@
         android:id="@+id/subirIncidenciaFragment"
         android:name="com.example.puigincidencies.view.SubirIncidenciaFragment"
         android:label="fragment_subir_incidencia"
+
         tools:layout="@layout/fragment_subir_incidencia" />
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.example.puigincidencies.view.PerfilFragment"
         android:label="fragment_perfil"
+
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/incidenciaProfesFragment"
         android:name="com.example.puigincidencies.view.Profes.IncidenciaProfesFragment"
         android:label="fragment_incidencia_profes"
+
         tools:layout="@layout/fragment_incidencia_profes" />
     <fragment
         android:id="@+id/incidenciaAlumnosFragment"
         android:name="com.example.puigincidencies.view.Alumnos.IncidenciaAlumnosFragment"
         android:label="fragment_incidencia_alumnos"
+
         tools:layout="@layout/fragment_incidencia_alumnos" />
 </navigation>
