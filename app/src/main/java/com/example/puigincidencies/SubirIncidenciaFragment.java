@@ -165,7 +165,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-         Bundle extras = data.getExtras();
+
             fotoincidencia = imageView.findViewById(R.id.fotoincidencia);
             Glide.with(this).load(currentPhotoPath).into(fotoincidencia);
 
