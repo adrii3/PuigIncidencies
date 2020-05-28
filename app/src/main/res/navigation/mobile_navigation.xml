@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_inicioProfesFragment_to_subirIncidenciaFragment"
             app:destination="@id/subirIncidenciaFragment" />
+        <action
+            android:id="@+id/action_inicioProfesFragment_to_incidenciaProfesFragment"
+            app:destination="@id/incidenciaProfesFragment" />
     </fragment>
     <fragment
         android:id="@+id/subirIncidenciaFragment"
@@ -53,4 +56,14 @@
         android:name="com.example.puigincidencies.PerfilFragment"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/incidenciaProfesFragment"
+        android:name="com.example.puigincidencies.IncidenciaProfesFragment"
+        android:label="fragment_incidencia_profes"
+        tools:layout="@layout/fragment_incidencia_profes" />
+    <fragment
+        android:id="@+id/incidenciaAlumnosFragment"
+        android:name="com.example.puigincidencies.IncidenciaAlumnosFragment"
+        android:label="fragment_incidencia_alumnos"
+        tools:layout="@layout/fragment_incidencia_alumnos" />
 </navigation>
