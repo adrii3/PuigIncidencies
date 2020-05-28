@@ -49,6 +49,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     private StorageReference mStorage;
     private String lugar;
     private boolean aceptarIncidencia = false;
+    private boolean incidenciaSolucionada = false;
 
 
 
@@ -108,8 +109,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         if(lugar.isEmpty() && editTextDescripcion.getText().toString().isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
-            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, currentPhotoPath));
-            db.collection("MiniaturaIncidencia").add(new IncidenciaRecyclerInicio(lugar,editTextDescripcion.getText().toString(),user.getUid()));
+            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, incidenciaSolucionada, currentPhotoPath));
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 

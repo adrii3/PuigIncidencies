@@ -2,7 +2,7 @@
 <resources>
     <string-array name="valores_spinner_filtro_inicio">
         <item>Filtro de incidencias: </item>
-        <item>Aceptada</item>
+        <item>Aceptadas</item>
         <item>No aceptadas </item>
         <item>No solucionadas</item>
         <item>Solucionadas </item>
