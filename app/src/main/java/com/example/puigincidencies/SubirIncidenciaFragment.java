@@ -156,7 +156,7 @@ public class SubirIncidenciaFragment extends AppFragment {
                 Uri photoURI = FileProvider.getUriForFile(requireActivity(),
                         "com.example.android.fileprovider",
                         photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
