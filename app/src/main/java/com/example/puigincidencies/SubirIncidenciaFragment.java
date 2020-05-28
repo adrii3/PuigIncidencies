@@ -45,6 +45,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     private Button subirIncidencia;
     private StorageReference mStorage;
     private String lugar, textoDescripcion;
+    private boolean aceptarIncidencia = false;
     Map<String, Object> incidencia = new HashMap<>();
 
 
@@ -103,14 +104,14 @@ public class SubirIncidenciaFragment extends AppFragment {
 
     private void subirDatos(){
 
-        if(!lugar.isEmpty() && !textoDescripcion.isEmpty()){
+        if(lugar.isEmpty() && textoDescripcion.isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
-            incidencia.put("Id",user.getUid());
-            incidencia.put("Lugar", lugar);
-            incidencia.put("Descripcion",textoDescripcion);
-            incidencia.put("aceptarIncidencia","False");
-            incidencia.put("Foto",currentPhotoPath);
+            incidencia.put("idUsuario",user.getUid());
+            incidencia.put("lugar", lugar);
+            incidencia.put("descripcion",textoDescripcion);
+            incidencia.put("aceptarIncidencia",aceptarIncidencia);
+            incidencia.put("foto",currentPhotoPath);
             db.collection("Incidencia").document().set(incidencia);
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
