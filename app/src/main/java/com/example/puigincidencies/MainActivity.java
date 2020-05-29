@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             if (documentSnapshot.exists()) {
-                                navController.navigate(R.id.perfilProfeFragment);
+                                navController.navigate(R.id.perfilProfeFragment);;
                             } else {
                                 navController.navigate(R.id.perfilFragment);
                             }
