@@ -77,10 +77,10 @@ public class LoginFragment extends AppFragment {
                         db.collection("Users").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
                             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                if (documentSnapshot == null) {
-                                    navController.navigate(R.id.inicioFragment);
-                                } else {
+                                if (documentSnapshot.exists()) {
                                     navController.navigate(R.id.inicioProfesFragment);
+                                } else {
+                                    navController.navigate(R.id.inicioFragment);
                                 }
                             }
                         });

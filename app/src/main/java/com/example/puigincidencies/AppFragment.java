@@ -1,7 +1,6 @@
 package com.example.puigincidencies;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
@@ -23,6 +22,7 @@ public abstract class AppFragment extends Fragment {
     public FirebaseUser user;
     public FirebaseStorage storage;
     public FirebaseAuth auth;
+
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {

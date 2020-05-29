@@ -10,7 +10,7 @@ public class Incidencia {
 
     public Incidencia(){}
 
-    public Incidencia(String uid, String lugar, String descripcion, boolean aceptarIncidencia, boolean incidenciaSolucionada, String mediaUrl) {
+    public Incidencia(String uid,String lugar, String descripcion, boolean aceptarIncidencia, boolean incidenciaSolucionada, String mediaUrl) {
         this.uid = uid;
         this.lugar = lugar;
         this.descripcion = descripcion;
@@ -18,6 +18,8 @@ public class Incidencia {
         this.incidenciaSolucionada = incidenciaSolucionada;
         this.mediaUrl = mediaUrl;
     }
+
+
 
     public String getUid() {
         return uid;

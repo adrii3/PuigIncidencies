@@ -27,7 +27,6 @@ import com.bumptech.glide.Glide;
 import com.example.puigincidencies.AppFragment;
 import com.example.puigincidencies.R;
 import com.example.puigincidencies.model.Incidencia;
-import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -50,6 +49,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     private String lugar;
     private boolean aceptarIncidencia = false;
     private boolean incidenciaSolucionada = false;
+
 
 
 

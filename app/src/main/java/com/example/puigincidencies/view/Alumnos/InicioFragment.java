@@ -9,10 +9,16 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.puigincidencies.AppFragment;
+import com.example.puigincidencies.IncidenciaAdapter;
 import com.example.puigincidencies.R;
+import com.example.puigincidencies.model.Incidencia;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.Query;
 
 
 /**
@@ -21,6 +27,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class InicioFragment extends AppFragment {
 
     FloatingActionButton floatingSubirIncidencia;
+    private RecyclerView recyclerView;
+    private IncidenciaAdapter incidenciaAdapter;
 
     public InicioFragment() {
         // Required empty public constructor
@@ -45,5 +53,17 @@ public class InicioFragment extends AppFragment {
                 navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
+
+
+        recyclerView = view.findViewById(R.id.recycler_view_inicio);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Query query = db.collection("Incidencia");
+        FirestoreRecyclerOptions<Incidencia> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Incidencia>()
+                .setQuery(query, Incidencia.class).build();
+
+        incidenciaAdapter = new IncidenciaAdapter(firestoreRecyclerOptions);
+        incidenciaAdapter.notifyDataSetChanged();
+        recyclerView.setAdapter(incidenciaAdapter);
+
     }
 }

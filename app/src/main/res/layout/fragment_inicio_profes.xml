@@ -43,7 +43,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_inicio"
+        android:id="@+id/recycler_view_inicio_profes"
         android:layout_width="347dp"
         android:layout_height="383dp"
         android:layout_marginTop="44dp"
@@ -57,10 +57,10 @@
         android:id="@+id/floating_subir_incidencia_profes"
         android:layout_width="67dp"
         android:layout_height="63dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="620dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_view_inicio" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

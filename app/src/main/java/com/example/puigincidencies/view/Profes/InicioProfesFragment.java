@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,9 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.puigincidencies.AppFragment;
-import com.example.puigincidencies.IncidenciaAdapter;
+import com.example.puigincidencies.IncidenciaAdapterProfes;
 import com.example.puigincidencies.R;
-import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
+import com.example.puigincidencies.model.Incidencia;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.Query;
@@ -31,11 +30,11 @@ import com.google.firebase.firestore.Query;
  */
 public class InicioProfesFragment extends AppFragment {
 
-    FloatingActionButton subirIncidenciaProfes;
-    Spinner filtrarIncidencias;
-    String filtro;
-    RecyclerView recyclerView;
-    IncidenciaAdapter incidenciaAdapter;
+    private FloatingActionButton subirIncidenciaProfes;
+    private Spinner filtrarIncidencias;
+    private String filtro;
+    private RecyclerView recyclerView;
+    private IncidenciaAdapterProfes incidenciaAdapterProfes;
 
 
     public InicioProfesFragment() {
@@ -54,7 +53,7 @@ public class InicioProfesFragment extends AppFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView =  view.findViewById(R.id.recycler_view_inicio);
+        recyclerView =  view.findViewById(R.id.recycler_view_inicio_profes);
 
         ArrayAdapter<CharSequence> adapterSpinnerFiltro = ArrayAdapter.createFromResource(getContext(), R.array.valores_spinner_filtro_inicio, android.R.layout.simple_spinner_item);
         filtrarIncidencias = view.findViewById(R.id.spinner_inicio_profes);
@@ -82,25 +81,32 @@ public class InicioProfesFragment extends AppFragment {
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Query query = db.collection("Incidencia");
-        FirestoreRecyclerOptions<IncidenciaRecyclerInicio> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<IncidenciaRecyclerInicio>()
-                .setQuery(query, IncidenciaRecyclerInicio.class).build();
+        final Query query = db.collection("Incidencia");
+        FirestoreRecyclerOptions<Incidencia> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Incidencia>()
+                .setQuery(query, Incidencia.class).build();
 
-        incidenciaAdapter = new IncidenciaAdapter(firestoreRecyclerOptions);
-        incidenciaAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(incidenciaAdapter);
+        incidenciaAdapterProfes = new IncidenciaAdapterProfes(firestoreRecyclerOptions);
+        incidenciaAdapterProfes.notifyDataSetChanged();
+        recyclerView.setAdapter(incidenciaAdapterProfes);
+
+        incidenciaAdapterProfes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.incidenciaProfesFragment);
+            }
+        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        incidenciaAdapter.startListening();
+        incidenciaAdapterProfes.startListening();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        incidenciaAdapter.stopListening();
+        incidenciaAdapterProfes.stopListening();
     }
     Query setQuery(){
         return db.collection("Incidencia");

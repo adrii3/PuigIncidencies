@@ -8,34 +8,31 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
+import com.example.puigincidencies.model.Incidencia;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class IncidenciaAdapter extends FirestoreRecyclerAdapter<IncidenciaRecyclerInicio, IncidenciaAdapter.ViewHolderIncidencia> {
-
-
+public class IncidenciaAdapter extends FirestoreRecyclerAdapter<Incidencia, IncidenciaAdapter.ViewHolderIncidencia> {
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
      *
      * @param options
      */
-    public IncidenciaAdapter(@NonNull FirestoreRecyclerOptions<IncidenciaRecyclerInicio> options) {
+    public IncidenciaAdapter(@NonNull FirestoreRecyclerOptions<Incidencia> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolderIncidencia holder, int position, @NonNull IncidenciaRecyclerInicio incidenciaRecyclerInicio) {
-        holder.lugar.setText(incidenciaRecyclerInicio.getLugar());
-        holder.descripcion.setText(incidenciaRecyclerInicio.getDescripcion());
+    protected void onBindViewHolder(@NonNull ViewHolderIncidencia holder, int position, @NonNull Incidencia model) {
+        holder.lugar.setText(model.getLugar());
+        holder.descripcion.setText(model.getDescripcion());
     }
 
     @NonNull
     @Override
     public ViewHolderIncidencia onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_incidencia, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_incidencia_alumno, parent, false);
         return new ViewHolderIncidencia(view);
     }
 
