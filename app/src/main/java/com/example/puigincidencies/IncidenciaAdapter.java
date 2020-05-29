@@ -36,6 +36,8 @@ public class IncidenciaAdapter extends FirestoreRecyclerAdapter<Incidencia, Inci
         return new ViewHolderIncidencia(view);
     }
 
+
+
     public class ViewHolderIncidencia extends RecyclerView.ViewHolder {
         TextView lugar;
         TextView descripcion;

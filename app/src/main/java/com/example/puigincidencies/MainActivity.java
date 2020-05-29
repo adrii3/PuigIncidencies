@@ -75,8 +75,17 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }else if(item.getItemId() == R.id.navigation_perfil){
-
+                }else if(item.getItemId() == R.id.navigation_incidencias){
+                    db.collection("Users").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                navController.navigate(R.id.inicioProfesFragment);;
+                            } else {
+                                navController.navigate(R.id.inicioFragment);
+                            }
+                        }
+                    });
                 }else if(item.getItemId() == R.id.navigation_perfil){
 
                 }
