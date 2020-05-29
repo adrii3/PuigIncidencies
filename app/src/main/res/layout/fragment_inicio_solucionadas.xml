@@ -21,6 +21,60 @@
         tools:layout_editor_absoluteX="0dp" />
 
 
+    <Button
+        android:id="@+id/boton_incidencias_generales_s"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/boton_redondo"
+        android:text="Todas las incidencias"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/boton_incidencias_aceptadas_s"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/boton_redondo"
+        android:text="Aceptadas"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/boton_incidencias_no_aceptadas_s"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="208dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/boton_redondo"
+        android:text="No aceptadas"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/boton_incidencias_no_solucionadas_s"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="212dp"
+        android:background="@drawable/boton_redondo"
+        android:text="No solucionadas"
+        android:textAlignment="center"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="121dp"
@@ -32,26 +86,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_inicio_aceptadas"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/recycler_view_inicio_s"
+        android:layout_width="349dp"
+        android:layout_height="325dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_subir_incidencia"
+        android:id="@+id/floating_subir_incidencia_s"
         android:layout_width="67dp"
         android:layout_height="63dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_inicio"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view_inicio_aceptadas" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
