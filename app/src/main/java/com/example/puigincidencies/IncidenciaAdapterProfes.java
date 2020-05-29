@@ -32,7 +32,7 @@ public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderIncidencia holder, int position, @NonNull Incidencia incidenciaRecyclerProfe) {
 
-        GlideApp.with(InicioProfesFragment.class).load(incidenciaRecyclerProfe.mediaUrl).circleCrop().into(holder.foto);
+        //GlideApp.with(InicioProfesFragment.class).load(incidenciaRecyclerProfe.mediaUrl).circleCrop().into(holder.foto);
         holder.lugar.setText(incidenciaRecyclerProfe.getLugar());
         holder.descripcion.setText(incidenciaRecyclerProfe.getDescripcion());
     }

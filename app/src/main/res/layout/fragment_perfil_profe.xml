@@ -32,36 +32,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+
     <TextView
-        android:textColor="@android:color/black"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
-        android:textSize="18dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="248dp"
-        android:text="Nombre :"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="256dp"
+        android:text="Tus incidencias: "
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="248dp"
-        android:text="Aula :"
-        android:textColor="@android:color/black"
-        android:textSize="18dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_perfil"
+        android:layout_width="367dp"
+        android:layout_height="299dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="324dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Crear cuentas para alumnos"
+        android:layout_marginTop="636dp"
         android:background="@drawable/boton_redondo"
+        android:text="Crear cuentas para alumnos"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="544dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
-        android:text="Perfil de usuario"
+        android:text="Lista de incidencias"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
@@ -26,30 +26,32 @@
         android:layout_width="121dp"
         android:layout_height="120dp"
         android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="144dp"
-        android:background="@drawable/perfiltrasnparente"
+        android:background="@drawable/point"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="256dp"
-        android:text="Tus incidencias: "
-        android:textColor="@android:color/black"
-        android:textSize="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="374dp"
-        android:layout_height="341dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="324dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/recycler_view_perfil"/>
+        android:id="@+id/recycler_view_inicio_aceptadas"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_subir_incidencia"
+        android:layout_width="67dp"
+        android:layout_height="63dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_view_inicio"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
