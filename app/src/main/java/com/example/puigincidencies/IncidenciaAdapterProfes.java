@@ -3,16 +3,20 @@ package com.example.puigincidencies;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
+import com.example.puigincidencies.GlideApp;
 
 import com.example.puigincidencies.model.Incidencia;
+import com.example.puigincidencies.view.Profes.InicioProfesFragment;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia, IncidenciaAdapterProfes.ViewHolderIncidencia> implements View.OnClickListener{
+public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia, IncidenciaAdapterProfes.ViewHolderIncidencia>  implements View.OnClickListener{
 
     private View.OnClickListener listener;
     /**
@@ -27,6 +31,8 @@ public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderIncidencia holder, int position, @NonNull Incidencia incidenciaRecyclerProfe) {
+
+        GlideApp.with(InicioProfesFragment.class).load(incidenciaRecyclerProfe.mediaUrl).circleCrop().into(holder.foto);
         holder.lugar.setText(incidenciaRecyclerProfe.getLugar());
         holder.descripcion.setText(incidenciaRecyclerProfe.getDescripcion());
     }
@@ -53,12 +59,14 @@ public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia
     }
 
     public class ViewHolderIncidencia extends RecyclerView.ViewHolder {
+        ImageView foto;
         TextView lugar;
         TextView descripcion;
 
         public ViewHolderIncidencia(@NonNull View itemView) {
             super(itemView);
 
+            foto = itemView.findViewById(R.id.idImagen);
             lugar = itemView.findViewById(R.id.viewholder_lugar_profe);
             descripcion = itemView.findViewById(R.id.viewholder_descripcion_profe);
         }

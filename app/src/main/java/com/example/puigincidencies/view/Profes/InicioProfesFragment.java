@@ -35,6 +35,7 @@ public class InicioProfesFragment extends AppFragment {
     private String filtro;
     private RecyclerView recyclerView;
     private IncidenciaAdapterProfes incidenciaAdapterProfes;
+    private Query query;
 
 
     public InicioProfesFragment() {
@@ -53,7 +54,7 @@ public class InicioProfesFragment extends AppFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView =  view.findViewById(R.id.recycler_view_inicio_profes);
+
 
         ArrayAdapter<CharSequence> adapterSpinnerFiltro = ArrayAdapter.createFromResource(getContext(), R.array.valores_spinner_filtro_inicio, android.R.layout.simple_spinner_item);
         filtrarIncidencias = view.findViewById(R.id.spinner_inicio_profes);
@@ -62,10 +63,12 @@ public class InicioProfesFragment extends AppFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 filtro = parent.getItemAtPosition(position).toString();
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 
@@ -76,6 +79,7 @@ public class InicioProfesFragment extends AppFragment {
                 navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
+        recyclerView =  view.findViewById(R.id.recycler_view_inicio_profes);
         montarRecycler();
     }
 
@@ -90,14 +94,11 @@ public class InicioProfesFragment extends AppFragment {
         super.onStop();
         incidenciaAdapterProfes.stopListening();
     }
-    Query setQuery(){
-        return db.collection("Incidencia");
-    }
 
     public void montarRecycler(){
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final Query query = db.collection("Incidencia");
+        Query query = db.collection("Incidencia");
         FirestoreRecyclerOptions<Incidencia> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Incidencia>()
                 .setQuery(query, Incidencia.class).build();
 
