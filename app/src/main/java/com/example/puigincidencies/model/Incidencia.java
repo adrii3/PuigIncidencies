@@ -6,17 +6,17 @@ public class Incidencia {
     public String descripcion;
     public boolean aceptarIncidencia;
     public boolean incidenciaSolucionada;
-    public String mediaUrl;
+    public String uri;
 
     public Incidencia(){}
 
-    public Incidencia(String uid,String lugar, String descripcion, boolean aceptarIncidencia, boolean incidenciaSolucionada, String mediaUrl) {
+    public Incidencia(String uid,String lugar, String descripcion, boolean aceptarIncidencia, boolean incidenciaSolucionada, String uri) {
         this.uid = uid;
         this.lugar = lugar;
         this.descripcion = descripcion;
         this.aceptarIncidencia = aceptarIncidencia;
         this.incidenciaSolucionada = incidenciaSolucionada;
-        this.mediaUrl = mediaUrl;
+        this.uri = uri;
     }
 
 
@@ -61,11 +61,11 @@ public class Incidencia {
         this.descripcion = descripcion;
     }
 
-    public String getMediaUrl() {
-        return mediaUrl;
+    public String getUri() {
+        return uri;
     }
 
-    public void setMediaUrl(String mediaUrl) {
-        this.mediaUrl = mediaUrl;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

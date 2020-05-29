@@ -109,7 +109,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         if(lugar.isEmpty() && editTextDescripcion.getText().toString().isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
-            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, incidenciaSolucionada, currentPhotoPath));
+            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, incidenciaSolucionada, photouri));
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 
@@ -181,11 +181,6 @@ public class SubirIncidenciaFragment extends AppFragment {
                     Toast.makeText(requireActivity() ,"foto subida correctamente",Toast.LENGTH_SHORT).show();
                 }
             });
-
-
-
-
         }
     }
-
 }
