@@ -168,10 +168,11 @@ public class SubirIncidenciaFragment extends AppFragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
             fotoincidencia = imageView.findViewById(R.id.fotoincidencia);
-            Glide.with(this).load(currentPhotoPath).into(fotoincidencia);
+
 
             mStorage = FirebaseStorage.getInstance().getReference();
             Uri uri = data.getData();
+            Glide.with(this).load(uri).into(fotoincidencia);
 
             StorageReference filePath= mStorage.child("fotos").child(uri.getLastPathSegment());
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {

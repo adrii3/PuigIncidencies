@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     public FirebaseUser user;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        final BottomNavigationView navView = findViewById(R.id.nav_view);
 
 
         // Passing each menu ID as a set of Ids because each
@@ -63,7 +65,12 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                if (item.getItemId()==R.id.loginFragment){
+                    navView.setVisibility(View.GONE);
+                }
+                else{
+                    navView.setVisibility(View.VISIBLE);
+                }
                 if(item.getItemId() == R.id.navigation_perfil){
                     db.collection("Users").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
