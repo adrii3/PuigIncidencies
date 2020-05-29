@@ -76,9 +76,25 @@ public class InicioProfesFragment extends AppFragment {
                 navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
+        montarRecycler();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        incidenciaAdapterProfes.startListening();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        incidenciaAdapterProfes.stopListening();
+    }
+    Query setQuery(){
+        return db.collection("Incidencia");
+    }
 
+    public void montarRecycler(){
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final Query query = db.collection("Incidencia");
@@ -95,20 +111,5 @@ public class InicioProfesFragment extends AppFragment {
                 navController.navigate(R.id.incidenciaProfesFragment);
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        incidenciaAdapterProfes.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        incidenciaAdapterProfes.stopListening();
-    }
-    Query setQuery(){
-        return db.collection("Incidencia");
     }
 }

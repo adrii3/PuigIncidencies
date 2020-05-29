@@ -27,7 +27,7 @@ import com.google.firebase.firestore.Query;
 public class InicioFragment extends AppFragment {
 
     FloatingActionButton floatingSubirIncidencia;
-    private RecyclerView recyclerView;
+    RecyclerView recyclerAlumno;
     private IncidenciaAdapter incidenciaAdapter;
 
     public InicioFragment() {
@@ -54,16 +54,32 @@ public class InicioFragment extends AppFragment {
             }
         });
 
+        recyclerAlumno = view.findViewById(R.id.recycler_view_inicio);
+        montarRecycler();
 
-        recyclerView = view.findViewById(R.id.recycler_view_inicio);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Query query = db.collection("Incidencia");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        incidenciaAdapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        incidenciaAdapter.stopListening();
+    }
+
+    public void montarRecycler(){
+        recyclerAlumno.setLayoutManager(new LinearLayoutManager(getContext()));
+        Query query = db.collection("Incidencia").whereEqualTo("aceptarIncidencia",true);
         FirestoreRecyclerOptions<Incidencia> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Incidencia>()
                 .setQuery(query, Incidencia.class).build();
 
         incidenciaAdapter = new IncidenciaAdapter(firestoreRecyclerOptions);
         incidenciaAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(incidenciaAdapter);
+        recyclerAlumno.setAdapter(incidenciaAdapter);
 
     }
 }
