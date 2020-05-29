@@ -59,7 +59,7 @@
         tools:layout="@layout/fragment_perfil" />
     <fragment
         android:id="@+id/registroAlumno"
-        android:name="com.example.puigincidencies.registroAlumno"
+        android:name="com.example.puigincidencies.RegistroAlumnoFragment"
         android:label="fragment_registro_alumno"
         tools:layout="@layout/fragment_registro_alumno" />
 </navigation>

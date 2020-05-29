@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.puigincidencies.AppFragment;
 import com.example.puigincidencies.IncidenciaAdapterProfes;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.Query;
 public class PerfilProfeFragment extends AppFragment {
     private RecyclerView recyclerView;
     private IncidenciaAdapterProfes incidenciaAdapterProfes;
+    private Button botonCambiarFragment;
 
     public PerfilProfeFragment() {
         // Required empty public constructor
@@ -46,6 +48,16 @@ public class PerfilProfeFragment extends AppFragment {
 
         recyclerView = view.findViewById(R.id.recycler_view_perfil);
         montarRecycler();
+
+        botonCambiarFragment = view.findViewById(R.id.boton_perfil);
+        botonCambiarFragment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.registroAlumno);
+            }
+        });
+
+
     }
 
     @Override

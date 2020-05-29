@@ -16,14 +16,14 @@ import android.widget.EditText;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class registroAlumno extends AppFragment {
+public class RegistroAlumnoFragment extends AppFragment {
       private EditText nombrecompleto;
       private EditText correo;
       private String contraseña;
       private Button boton;
 
 
-    public registroAlumno() {
+    public RegistroAlumnoFragment() {
         // Required empty public constructor
     }
 

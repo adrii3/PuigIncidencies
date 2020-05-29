@@ -50,47 +50,10 @@ public class InicioSolucionadasFragment extends AppFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        subirIncidenciaProfes = view.findViewById(R.id.floating_subir_incidencia_s);
-        subirIncidenciaProfes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.subirIncidenciaFragment);
-            }
-        });
+
         recyclerView =  view.findViewById(R.id.recycler_view_inicio_s);
         montarRecycler();
 
-        general = view.findViewById(R.id.boton_incidencias_generales_s);
-        general.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.inicioProfesFragment);
-            }
-        });
-
-        aceptadas = view.findViewById(R.id.boton_incidencias_aceptadas_s);
-        aceptadas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.inicioAceptadasFragment);
-            }
-        });
-
-        noAceptadas = view.findViewById(R.id.boton_incidencias_no_aceptadas_s);
-        noAceptadas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.inicioNoAceptadasFragment);
-            }
-        });
-
-        noSolucionadas= view.findViewById(R.id.boton_incidencias_no_solucionadas_s);
-        noSolucionadas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navController.navigate(R.id.inicioNoSolucionadasFragment);
-            }
-        });
 
     }
 
