@@ -27,7 +27,9 @@ import com.bumptech.glide.Glide;
 import com.example.puigincidencies.AppFragment;
 import com.example.puigincidencies.R;
 import com.example.puigincidencies.model.Incidencia;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -49,8 +51,8 @@ public class SubirIncidenciaFragment extends AppFragment {
     private String lugar;
     private boolean aceptarIncidencia = false;
     private boolean incidenciaSolucionada = false;
-
-
+    private Uri photoURI;
+    private String chorizo;
 
 
     public SubirIncidenciaFragment() {
@@ -67,7 +69,7 @@ public class SubirIncidenciaFragment extends AppFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        fotoincidencia = view.findViewById(R.id.fotoincidencia);
         ArrayAdapter<CharSequence> adapterSpinnerClases = ArrayAdapter.createFromResource(getContext(), R.array.valores_spinner_clase, android.R.layout.simple_spinner_item);
         spinnerClase = view.findViewById(R.id.spinnner_clase);
         spinnerClase.setAdapter(adapterSpinnerClases);
@@ -82,7 +84,7 @@ public class SubirIncidenciaFragment extends AppFragment {
             }
         });
 
-
+        chorizo=editTextDescripcion.getText().toString();
         editTextDescripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
 
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
@@ -152,7 +154,7 @@ public class SubirIncidenciaFragment extends AppFragment {
             }
               // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(requireActivity(),
+                photoURI = FileProvider.getUriForFile(requireActivity(),
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -167,20 +169,31 @@ public class SubirIncidenciaFragment extends AppFragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
-            fotoincidencia = imageView.findViewById(R.id.fotoincidencia);
+
 
 
             mStorage = FirebaseStorage.getInstance().getReference();
-            Uri uri = data.getData();
-            Glide.with(this).load(uri).into(fotoincidencia);
 
-            StorageReference filePath= mStorage.child("fotos").child(uri.getLastPathSegment());
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            Glide.with(this).load(photoURI).into(fotoincidencia);
+
+            StorageReference filePath= mStorage.child("fotos").child(photoURI.getLastPathSegment());
+            filePath.putFile(photoURI).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(requireActivity() ,"foto subida correctamente",Toast.LENGTH_SHORT).show();
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                    return task.getResult().getStorage().getDownloadUrl();
                 }
-            });
+            })
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            subirDatosIncidenciaCompleta(chorizo, uri.toString());
+                        }
+                    });
+
+
+
+
         }
     }
+
 }
