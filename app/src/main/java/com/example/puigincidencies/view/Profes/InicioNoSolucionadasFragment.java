@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.puigincidencies.AppFragment;
 import com.example.puigincidencies.IncidenciaAdapterProfes;
@@ -29,6 +30,7 @@ public class InicioNoSolucionadasFragment extends AppFragment {
     private FloatingActionButton subirIncidenciaProfes;
     private RecyclerView recyclerView;
     private IncidenciaAdapterProfes incidenciaAdapterProfes;
+    private Button general, aceptadas , noAceptadas, solucionadas;
 
     public InicioNoSolucionadasFragment() {
         // Required empty public constructor
@@ -46,15 +48,48 @@ public class InicioNoSolucionadasFragment extends AppFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        subirIncidenciaProfes = view.findViewById(R.id.floating_subir_incidencia_profes);
+        subirIncidenciaProfes = view.findViewById(R.id.floating_subir_incidencia_ns);
         subirIncidenciaProfes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 navController.navigate(R.id.subirIncidenciaFragment);
             }
         });
-        recyclerView =  view.findViewById(R.id.recycler_view_inicio_profes);
+        recyclerView =  view.findViewById(R.id.recycler_view_inicio_ns);
         montarRecycler();
+
+        general = view.findViewById(R.id.boton_incidencias_generales_ns);
+        general.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioProfesFragment);
+            }
+        });
+
+        aceptadas = view.findViewById(R.id.boton_incidencias_aceptadas_ns);
+        aceptadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioAceptadasFragment);
+            }
+        });
+
+        noAceptadas = view.findViewById(R.id.boton_incidencias_no_aceptadas_ns);
+        noAceptadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioNoAceptadasFragment);
+            }
+        });
+
+        solucionadas = view.findViewById(R.id.boton_incidencias_solucionadas_ns);
+        solucionadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioSolucionadasFragment);
+            }
+        });
+
     }
 
     @Override
@@ -72,7 +107,7 @@ public class InicioNoSolucionadasFragment extends AppFragment {
     public void montarRecycler(){
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        Query query = db.collection("Incidencia").whereEqualTo("aceptarIncidencia",true);
+        Query query = db.collection("Incidencia").whereEqualTo("incidenciaSolucionada",false);
         FirestoreRecyclerOptions<Incidencia> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Incidencia>()
                 .setQuery(query, Incidencia.class).build();
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class InicioProfesFragment extends AppFragment {
     private FloatingActionButton subirIncidenciaProfes;
     private RecyclerView recyclerView;
     private IncidenciaAdapterProfes incidenciaAdapterProfes;
+    private Button aceptadas, noAceptadas , solucionadas, noSolucionadas;
 
 
 
@@ -62,6 +64,39 @@ public class InicioProfesFragment extends AppFragment {
         });
         recyclerView =  view.findViewById(R.id.recycler_view_inicio_profes);
         montarRecycler();
+
+        aceptadas = view.findViewById(R.id.boton_incidencias_aceptadas);
+        aceptadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioAceptadasFragment);
+            }
+        });
+
+        noAceptadas = view.findViewById(R.id.boton_incidencias_no_aceptadas);
+        noAceptadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioNoAceptadasFragment);
+            }
+        });
+
+        solucionadas = view.findViewById(R.id.boton_incidencias_solucionadas);
+        solucionadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioSolucionadasFragment);
+            }
+        });
+
+        noSolucionadas = view.findViewById(R.id.boton_incidencias_no_solucionadas);
+        noSolucionadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                navController.navigate(R.id.inicioNoSolucionadasFragment);
+            }
+        });
+
     }
 
     @Override
