@@ -70,7 +70,7 @@ public class InicioAceptadasFragment extends AppFragment {
         noAceptadas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                navController.navigate(R.id.inicioNoAceptadasFragment);
+                navController.navigate(R.id.a);
             }
         });
 
