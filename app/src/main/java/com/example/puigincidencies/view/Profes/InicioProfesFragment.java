@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,8 +23,6 @@ import com.example.puigincidencies.R;
 import com.example.puigincidencies.model.IncidenciaRecyclerInicio;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 
@@ -36,6 +36,7 @@ public class InicioProfesFragment extends AppFragment {
     String filtro;
     RecyclerView recyclerView;
     IncidenciaAdapter incidenciaAdapter;
+
 
     public InicioProfesFragment() {
         // Required empty public constructor
@@ -62,8 +63,6 @@ public class InicioProfesFragment extends AppFragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 filtro = parent.getItemAtPosition(position).toString();
-
-
             }
 
             @Override
@@ -102,5 +101,8 @@ public class InicioProfesFragment extends AppFragment {
     public void onStop() {
         super.onStop();
         incidenciaAdapter.stopListening();
+    }
+    Query setQuery(){
+        return db.collection("Incidencia");
     }
 }
