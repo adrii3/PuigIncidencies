@@ -84,7 +84,7 @@ public class SubirIncidenciaFragment extends AppFragment {
             }
         });
 
-        chorizo=editTextDescripcion.getText().toString();
+
         editTextDescripcion = view.findViewById(R.id.descripcion_et_subir_incidencia);
 
         subirIncidencia = view.findViewById(R.id.btn_subir_incidencias);
@@ -111,7 +111,7 @@ public class SubirIncidenciaFragment extends AppFragment {
         if(lugar.isEmpty() && editTextDescripcion.getText().toString().isEmpty()){
             Toast.makeText(requireContext(), "Rellene los campos requeridos (Lugar y descripcion)", Toast.LENGTH_SHORT).show();
         }else{
-            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, incidenciaSolucionada, photouri));
+            db.collection("Incidencia").add( new Incidencia(user.getUid(),lugar, editTextDescripcion.getText().toString(), aceptarIncidencia, incidenciaSolucionada, photoURI.toString()));
             navController.popBackStack();
             Toast.makeText(requireContext(), "Incidencia subida", Toast.LENGTH_SHORT).show();
 
@@ -186,7 +186,7 @@ public class SubirIncidenciaFragment extends AppFragment {
                     .addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            subirDatosIncidenciaCompleta(chorizo, uri.toString());
+                            subirDatosIncidenciaCompleta();
                         }
                     });
 
