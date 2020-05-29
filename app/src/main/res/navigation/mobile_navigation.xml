@@ -37,49 +37,29 @@
     <fragment
         android:id="@+id/subirIncidenciaFragment"
         android:name="com.example.puigincidencies.view.SubirIncidenciaFragment"
-        android:label="fragment_subir_incidencia"
 
         tools:layout="@layout/fragment_subir_incidencia" />
     <fragment
         android:id="@+id/incidenciaProfesFragment"
         android:name="com.example.puigincidencies.view.Profes.IncidenciaProfesFragment"
-        android:label="fragment_incidencia_profes"
 
         tools:layout="@layout/fragment_incidencia_profes" />
     <fragment
         android:id="@+id/incidenciaAlumnosFragment"
         android:name="com.example.puigincidencies.view.Alumnos.IncidenciaAlumnosFragment"
-        android:label="fragment_incidencia_alumnos"
 
         tools:layout="@layout/fragment_incidencia_alumnos" />
     <fragment
         android:id="@+id/perfilProfeFragment"
-        android:name="com.example.puigincidencies.view.Profes.PerfilProfeFragment"
-        android:label="fragment_perfil_profe"
+        android:name="com.example.puigincidencies.PerfilProfeFragment"
         tools:layout="@layout/fragment_perfil_profe" />
     <fragment
         android:id="@+id/perfilFragment"
-        android:name="com.example.puigincidencies.view.Alumnos.PerfilFragment"
-        android:label="fragment_perfil"
+        android:name="com.example.puigincidencies.PerfilFragment"
         tools:layout="@layout/fragment_perfil" />
     <fragment
-        android:id="@+id/inicioAceptadasFragment"
-        android:name="com.example.puigincidencies.view.Profes.InicioAceptadasFragment"
-        android:label="fragment_inicio_aceptadas"
-        tools:layout="@layout/fragment_inicio_aceptadas" />
-    <fragment
-        android:id="@+id/inicioNoAceptadasFragment"
-        android:name="com.example.puigincidencies.view.Profes.InicioNoAceptadasFragment"
-        android:label="fragment_inicio_no_aceptadas"
-        tools:layout="@layout/fragment_inicio_no_aceptadas" />
-    <fragment
-        android:id="@+id/inicioNoSolucionadasFragment"
-        android:name="com.example.puigincidencies.view.Profes.InicioNoSolucionadasFragment"
-        android:label="fragment_inicio_no_solucionadas"
-        tools:layout="@layout/fragment_inicio_no_solucionadas" />
-    <fragment
-        android:id="@+id/inicioSolucionadasFragment"
-        android:name="com.example.puigincidencies.view.Profes.InicioSolucionadasFragment"
-        android:label="fragment_inicio_solucionadas"
-        tools:layout="@layout/fragment_inicio_solucionadas" />
+        android:id="@+id/registroAlumno"
+        android:name="com.example.puigincidencies.registroAlumno"
+        android:label="fragment_registro_alumno"
+        tools:layout="@layout/fragment_registro_alumno" />
 </navigation>

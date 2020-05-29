@@ -5,12 +5,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.puigincidencies.GlideApp;
 
+import com.bumptech.glide.Glide;
 import com.example.puigincidencies.model.Incidencia;
 import com.example.puigincidencies.view.Profes.InicioProfesFragment;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -35,6 +37,7 @@ public class IncidenciaAdapterProfes extends FirestoreRecyclerAdapter<Incidencia
         //GlideApp.with(InicioProfesFragment.class).load(incidenciaRecyclerProfe.mediaUrl).circleCrop().into(holder.foto);
         holder.lugar.setText(incidenciaRecyclerProfe.getLugar());
         holder.descripcion.setText(incidenciaRecyclerProfe.getDescripcion());
+
     }
 
     @NonNull
