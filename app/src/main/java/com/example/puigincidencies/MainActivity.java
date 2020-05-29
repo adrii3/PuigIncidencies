@@ -11,8 +11,12 @@ import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +35,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView imageView;
+    private FirebaseFirestore db;
+    public FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +55,24 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA}, 1000);
         }
 
+
+         db = FirebaseFirestore.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 if(item.getItemId() == R.id.navigation_perfil){
-                    navController.navigate(R.id.perfilFragment);
+                    db.collection("Users").document(user.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            if (documentSnapshot.exists()) {
+                                navController.navigate(R.id.perfilProfesFragment);
+                            } else {
+                                navController.navigate(R.id.perfilFragment);
+                            }
+                        }
+                    });
                 }else if(item.getItemId() == R.id.navigation_perfil){
 
                 }else if(item.getItemId() == R.id.navigation_perfil){
