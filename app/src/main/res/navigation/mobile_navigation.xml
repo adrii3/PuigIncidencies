@@ -62,4 +62,24 @@
         android:name="com.example.puigincidencies.RegistroAlumnoFragment"
         android:label="fragment_registro_alumno"
         tools:layout="@layout/fragment_registro_alumno" />
+    <fragment
+        android:id="@+id/inicioAceptadasFragment"
+        android:name="com.example.puigincidencies.InicioAceptadasFragment"
+        android:label="fragment_inicio_aceptadas"
+        tools:layout="@layout/fragment_inicio_aceptadas" />
+    <fragment
+        android:id="@+id/inicioNoAceptadasFragment"
+        android:name="com.example.puigincidencies.InicioNoAceptadasFragment"
+        android:label="fragment_inicio_no_aceptadas"
+        tools:layout="@layout/fragment_inicio_no_aceptadas" />
+    <fragment
+        android:id="@+id/inicioNoSolucionadasFragment"
+        android:name="com.example.puigincidencies.InicioNoSolucionadasFragment"
+        android:label="fragment_inicio_no_solucionadas"
+        tools:layout="@layout/fragment_inicio_no_solucionadas" />
+    <fragment
+        android:id="@+id/inicioSolucionadasFragment"
+        android:name="com.example.puigincidencies.InicioSolucionadasFragment"
+        android:label="fragment_inicio_solucionadas"
+        tools:layout="@layout/fragment_inicio_solucionadas" />
 </navigation>
